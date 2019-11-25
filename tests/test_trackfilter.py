@@ -1,6 +1,5 @@
+from trackfilter.cli import split_artist_and_track_name
 
-from trackfilter.cli import main
 
-
-def test_main():
-    assert main([]) == 0
+def test_split_artist_and_track_name():
+    assert split_artist_and_track_name("Artist - Track") == ["Artist", "Track"]

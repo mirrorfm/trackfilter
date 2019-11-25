@@ -14,18 +14,17 @@ Why does this file exist, and why not put this in __main__?
 
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
-import sys
 
 
-def main(argv=sys.argv):
+def split_artist_and_track_name(youtube_title):
     """
     Args:
-        argv (list): List of arguments
+        youtube_title (string): Song name
 
     Returns:
-        int: A return code
+       array: An array of string containing the artist and track name
 
-    Does stuff.
+    Splits artist and track name.
     """
-    print(argv)
-    return 0
+    artist_and_track = youtube_title.split("-", 1)
+    return list(map(str.strip, artist_and_track))

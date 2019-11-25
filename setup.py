@@ -82,7 +82,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'trackfilter = trackfilter.cli:main',
+            'trackfilter = trackfilter.cli:split_artist_and_track_name',
         ]
     },
 )
