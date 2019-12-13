@@ -18,3 +18,5 @@ def test_split_artist_track():
     assert f("Artist - Track [LABEL001]") == ["Artist", "Track"]
     assert f("Artist - Track (official)") == ["Artist", "Track"]
     assert f("Artist - Track.mp3") == ["Artist", "Track"]
+    assert f("Artist & Artist - Track") == ["Artist Artist", "Track"]
+    assert f("Artist&Artist - Track") == ["Artist&Artist", "Track"]

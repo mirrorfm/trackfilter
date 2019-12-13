@@ -69,6 +69,10 @@ def find_separator(title):
             continue
 
 
+def clean_artist(artist):
+    return artist.replace(' & ', ' ')
+
+
 def split_artist_track(title):
     if title:
         title = filter_with_filter_rules(title)
@@ -78,6 +82,7 @@ def split_artist_track(title):
             length = separator['length']
             artist = title[0:i]
             track = title[i+length:]
+            artist = clean_artist(artist)
             return strip([artist, track])
     return None
 
