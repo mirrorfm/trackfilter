@@ -2,4 +2,4 @@
 Authors
 =======
 
-* Stephane Bruckert - http://stephanebruckert.com
+* Stephane Bruckert - https://stephanebruckert.com

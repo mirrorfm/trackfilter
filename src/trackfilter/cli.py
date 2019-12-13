@@ -70,7 +70,10 @@ def find_separator(title):
 
 
 def clean_artist(artist):
-    return artist.replace(' & ', ' ')
+    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.']
+    for s in to_remove:
+        artist = artist.replace(' %s ' % s, ' ')
+    return artist
 
 
 def split_artist_track(title):

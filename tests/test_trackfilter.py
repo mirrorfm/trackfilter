@@ -20,3 +20,4 @@ def test_split_artist_track():
     assert f("Artist - Track.mp3") == ["Artist", "Track"]
     assert f("Artist & Artist - Track") == ["Artist Artist", "Track"]
     assert f("Artist&Artist - Track") == ["Artist&Artist", "Track"]
+    assert f("Artist vs. Artist - Track") == ["Artist Artist", "Track"]
