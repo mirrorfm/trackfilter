@@ -22,7 +22,7 @@ import re
 YOUTUBE_TRACK_FILTER_RULES = [
     r"^\s+|\s+$"
     r"\*+\s?\S+\s?\*+$",
-    r"\[[^\]]+\]$",
+    r"\[[^\]]+\]$",  # [whatever]
     r"\([^)]*version\)$",
     r"\.(avi|wmv|mpg|mpeg|flv|mp3|flac)$",
     r"((with)?\s*lyrics?( video)?\s*)",
@@ -71,6 +71,7 @@ def find_separator(title):
 
 def clean_artist(artist):
     to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.']
+    artist = re.sub(r"\[[^\]]+\]", "", artist)
     for s in to_remove:
         artist = artist.replace(' %s ' % s, ' ')
     return artist

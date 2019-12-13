@@ -16,6 +16,7 @@ def test_split_artist_track():
     assert f(None) is None
     assert f("") is None
     assert f("Artist - Track [LABEL001]") == ["Artist", "Track"]
+    assert f("[LABEL001] Artist - Track") == ["Artist", "Track"]
     assert f("Artist - Track (official)") == ["Artist", "Track"]
     assert f("Artist - Track.mp3") == ["Artist", "Track"]
     assert f("Artist & Artist - Track") == ["Artist Artist", "Track"]
