@@ -25,7 +25,7 @@ def read(*names, **kwargs):
 
 setup(
     name='trackfilter',
-    version='0.1.1',
+    version='0.1.2',
     license='MIT',
     description='Remove YouTube-related garbage from song titles.',
     long_description='%s\n%s' % (
