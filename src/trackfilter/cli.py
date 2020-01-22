@@ -70,10 +70,16 @@ def find_separator(title):
 
 
 def clean_artist(artist):
-    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.']
     artist = re.sub(r"\[[^\]]+\]", "", artist)
+
+    # Remove indicator for multiple artists
+    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.']
     for s in to_remove:
         artist = artist.replace(' %s ' % s, ' ')
+
+    # Remove vinyl track number
+    artist = re.sub(r"^([a-zA-Z]{1,2}[1-9]?. )?", "", artist)
+
     return artist
 
 

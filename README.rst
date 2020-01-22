@@ -70,7 +70,6 @@ You can also install the in-development version with::
 Documentation
 =============
 
-
 https://trackfilter.readthedocs.io/
 
 
