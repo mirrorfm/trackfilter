@@ -33,6 +33,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"(COVER ART\s*)?(Cover Art\s*)",  # (Cover Art)
     r"\(\s*of+icial\s*\)",  # (official)
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
+    r"\(\s*([a-z]*\s)?[0-9]{4}\s*\)",  # (Techno 1990)
     r"\(\s*(HD|HQ)\s*\)$",  # HD (HQ)
     r"(HD|HQ)\s*$",  # HD (HQ)
     r"(vid[\u00E9e]o)?\s?clip\sofficiel",  # video clip officiel
@@ -78,7 +79,11 @@ def clean_artist(artist):
         artist = artist.replace(' %s ' % s, ' ')
 
     # Remove vinyl track number
-    artist = re.sub(r"^([a-zA-Z]{1,2}[1-9]?. )?", "", artist)
+    # https://regex101.com/r/gHh2TB/4
+    artist = re.sub(r"^((([a-zA-Z]{1,2})|([0-9]{1,2}))[1-9]?\. )?", "", artist)
+
+    # Remove "PREMIERE: "
+    artist = re.sub(r"(PREMIERE: )?", "", artist, flags=re.IGNORECASE)
 
     return artist
 
@@ -103,5 +108,5 @@ def strip(words):
 
 def filter_with_filter_rules(text):
     for regex in YOUTUBE_TRACK_FILTER_RULES:
-        text = re.sub(regex, "", text)
+        text = re.sub(regex, "", text, flags=re.IGNORECASE)
     return text
