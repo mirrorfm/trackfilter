@@ -1,6 +1,11 @@
 Changelog
 =========
 
+unreleased
+----------
+
+* Remove "(unreleased)"
+
 0.2.0 (2020-03-07)
 ------------------
 

@@ -41,3 +41,4 @@ def test_split_artist_track():
     assert f("Artist - Track (Techno 1990)") == ["Artist", "Track"]
     assert f("Artist - Track (Remix123)") == ["Artist", "Track (Remix123)"]
     assert f("Artist - Track (Techno 123)") == ["Artist", "Track (Techno 123)"]
+    assert f("Artist - Track ( unreleased 1990 )") == ["Artist", "Track"]
