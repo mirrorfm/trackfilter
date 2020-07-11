@@ -84,23 +84,28 @@ def clean_artist(artist):
     artist = re.sub(r"^((([a-zA-Z]{1,2})|([0-9]{1,2}))[1-9]?\. )?", "", artist)
 
     # Remove "PREMIERE: "
-    artist = re.sub(r"(PREMIERE: )?", "", artist, flags=re.IGNORECASE)
+    # https://regex101.com/r/nG16TF/1
+    artist = re.sub(r"(PREMIERE\s*:)?", "", artist, flags=re.IGNORECASE)
 
     return artist
 
 
 def split_artist_track(title):
-    if title:
-        title = filter_with_filter_rules(title)
-        separator = find_separator(title)
-        if separator:
-            i = separator['index']
-            length = separator['length']
-            artist = title[0:i]
-            track = title[i+length:]
-            artist = clean_artist(artist)
-            return strip([artist, track])
-    return None
+    if not title:
+        return None
+
+    # Strip full title
+    title = title.strip()
+
+    title = filter_with_filter_rules(title)
+    separator = find_separator(title)
+    if separator:
+        i = separator['index']
+        length = separator['length']
+        artist = title[0:i]
+        track = title[i+length:]
+        artist = clean_artist(artist)
+        return strip([artist, track])
 
 
 def strip(words):
