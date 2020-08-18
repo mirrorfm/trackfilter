@@ -16,7 +16,9 @@ def test_split_artist_track():
     assert f(None) is None
     assert f("") is None
     assert f("Artist - Track [LABEL001]") == ["Artist", "Track"]
+    assert f("Artist - Track [LABEL001] album") == ["Artist", "Track"]
     assert f("[LABEL001] Artist - Track") == ["Artist", "Track"]
+    assert f("Artist [LABEL001] - Track") == ["Artist", "Track"]
     assert f("Artist - Track (official)") == ["Artist", "Track"]
     assert f("Artist - Track.mp3") == ["Artist", "Track"]
     assert f("Artist & Artist - Track") == ["Artist Artist", "Track"]
@@ -47,3 +49,5 @@ def test_split_artist_track():
     assert f("Artist - Track ( unreleased 1990 )") == ["Artist", "Track"]
     assert f("  Premiere : Artist - Track") == ["Artist", "Track"]
     assert f("   Premiere : Artist - Track") == ["Artist", "Track"]
+    assert f("Artist ► Track") == ["Artist", "Track"]
+    assert f("Artist ► Track [genre] album") == ["Artist", "Track"]

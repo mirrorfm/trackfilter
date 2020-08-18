@@ -22,7 +22,7 @@ import re
 YOUTUBE_TRACK_FILTER_RULES = [
     r"^\s+|\s+$"
     r"\*+\s?\S+\s?\*+$",
-    r"\[[^\]]+\]$",  # [whatever]
+    r"\[[^\]]+\].*",  # [whatever] something else
     r"\([^)]*version\)$",
     r"\.(avi|wmv|mpg|mpeg|flv|mp3|flac)$",
     r"((with)?\s*lyrics?( video)?\s*)",
@@ -46,14 +46,12 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"\|.*$",  # | something
     r"\(+\s*\)+",  # Leftovers after e.g. (official video)
     r"\(.*[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}.*\)",  # (*01/01/1999*)
-    # r"^[/,:;~-\s"]+",  # trim starting white chars and dash
-    # r"[/,:;~-\s"!]+$"  # trim trailing white chars and dash
 ]
 
 
 SEPARATORS = [
     ' -- ', '--', ' ~ ', ' - ', ' – ', ' — ',
-    ' // ', '-', '–', '—', ':', '|', '///', '/'
+    ' // ', '-', '–', '—', ':', '|', '///', '/', '►'
 ]
 
 
@@ -72,6 +70,7 @@ def find_separator(title):
 
 
 def clean_artist(artist):
+    # Remove [whatever] before artist
     artist = re.sub(r"\[[^\]]+\]", "", artist)
 
     # Remove indicator for multiple artists
@@ -97,13 +96,12 @@ def split_artist_track(title):
     # Strip full title
     title = title.strip()
 
-    title = filter_with_filter_rules(title)
     separator = find_separator(title)
     if separator:
         i = separator['index']
         length = separator['length']
         artist = title[0:i]
-        track = title[i+length:]
+        track = filter_with_filter_rules(title[i+length:])
         artist = clean_artist(artist)
         return strip([artist, track])
 
