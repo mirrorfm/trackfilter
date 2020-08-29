@@ -78,13 +78,13 @@ def clean_artist(artist):
     for s in to_remove:
         artist = artist.replace(' %s ' % s, ' ')
 
-    # Remove vinyl track number
-    # https://regex101.com/r/gHh2TB/4
-    artist = re.sub(r"^((([a-zA-Z]{1,2})|([0-9]{1,2}))[1-9]?\. )?", "", artist)
-
     # Remove "PREMIERE: "
     # https://regex101.com/r/nG16TF/1
-    artist = re.sub(r"(PREMIERE\s*:)?", "", artist, flags=re.IGNORECASE)
+    artist = re.sub(r"(PREMIERE\s*:)?", "", artist.strip(), flags=re.IGNORECASE)
+
+    # Remove vinyl track number
+    # https://regex101.com/r/gHh2TB/4
+    artist = re.sub(r"^((([a-zA-Z]{1,2})|([0-9]{1,2}))[1-9]?\. )?", "", artist.strip())
 
     return artist
 
