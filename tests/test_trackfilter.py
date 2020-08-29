@@ -51,3 +51,4 @@ def test_split_artist_track():
     assert f("   Premiere : Artist - Track") == ["Artist", "Track"]
     assert f("Artist ► Track") == ["Artist", "Track"]
     assert f("Artist ► Track [genre] album") == ["Artist", "Track"]
+    assert f("Artist - Track ᴴᴰ") == ["Artist", "Track"]

@@ -35,8 +35,8 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
     r"\(\s*([a-z]*\s)?\s*[0-9]{4}([a-z])?\s*([a-z]*\s?)?\)",  # (Techno 1990)
     r"\(\s*([0-9]{4}\s*)?unreleased\s*([0-9]{4}\s*)?\)",  # (unreleased) https://regex101.com/r/Z5zD8l/1
-    r"\(\s*(HD|HQ)\s*\)$",  # HD (HQ)
-    r"(HD|HQ)\s*$",  # HD (HQ)
+    r"\(\s*(HD|HQ|ᴴᴰ)\s*\)$",  # HD (HQ)
+    r"(HD|HQ|ᴴᴰ)\s*$",  # HD (HQ)
     r"(vid[\u00E9e]o)?\s?clip\sofficiel",  # video clip officiel
     r"of+iziel+es\s*",  # offizielles
     r"vid[\u00E9e]o\s?clip",  # video clip
