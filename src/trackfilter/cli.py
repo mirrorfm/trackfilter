@@ -31,6 +31,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"(of+icial\s*)?(music\s*)?audio",  # (official)? (music)? audio
     r"(ALBUM TRACK\s*)?(album track\s*)",  # (ALBUM TRACK)
     r"(COVER ART\s*)?(Cover Art\s*)",  # (Cover Art)
+    r"\((.*?)subt(.*?)\)",  # (subtitles espanol) https://regex101.com/r/8kVFrm/1
     r"\(\s*of+icial\s*\)",  # (official)
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
     r"\(\s*([a-z]*\s)?\s*[0-9]{4}([a-z])?\s*([a-z]*\s?)?\)",  # (Techno 1990)
@@ -74,7 +75,7 @@ def clean_artist(artist):
     artist = re.sub(r"\[[^\]]+\]", "", artist)
 
     # Remove indicator for multiple artists
-    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.']
+    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.', 'featuring']
     for s in to_remove:
         artist = artist.replace(' %s ' % s, ' ')
 
@@ -89,12 +90,28 @@ def clean_artist(artist):
     return artist
 
 
+def artist_in_track(track):
+    feat_separator = ['feat.', 'featuring', 'feat']  # order matters
+    for s in feat_separator:
+        parts = track.split(s)
+        if len(parts) > 1:
+            return parts[0].strip(), parts[1].strip()
+    return track, None
+
+
 def split_artist_track(title):
     if not title:
         return None
 
     # Strip full title
     title = title.strip()
+
+    # https://regex101.com/r/FkABDG/1
+    quoted_track = re.match(r"(.+?)\"([^\"]*)\"", title)
+    if quoted_track:
+        artist = quoted_track.group(1)
+        track = quoted_track.group(2)
+        return strip([artist, track])
 
     separator = find_separator(title)
     if separator:
@@ -103,6 +120,13 @@ def split_artist_track(title):
         artist = title[0:i]
         track = filter_with_filter_rules(title[i+length:])
         artist = clean_artist(artist)
+
+        # Handle case where another artist is part of the track
+        # Artist1 - Track feat. Artist2
+        track, second_artist = artist_in_track(track)
+        if second_artist:
+            artist = ' '.join([artist, second_artist])
+
         return strip([artist, track])
 
 
