@@ -92,7 +92,7 @@ def clean_artist(artist):
 
 
 def artist_in_track(track):
-    feat_separator = ['feat.', 'featuring', 'feat']  # order matters
+    feat_separator = [' feat. ', ' featuring ', ' feat ', ' ft. ', ' ft ']  # order matters
     for s in feat_separator:
         parts = track.split(s)
         if len(parts) > 1:
