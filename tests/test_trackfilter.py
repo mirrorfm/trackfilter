@@ -57,5 +57,7 @@ def test_split_artist_track():
     assert f("[PREMIERE] B2. Artist - Track [OATH001]") == ["Artist", "Track"]
     assert f("Artist - Track (Official Video) | Some label") == ["Artist", "Track"]
     assert f("Artist \"Track\" something") == ["Artist", "Track"]
+    assert f("Artist - Track (From \"foo\")") == ["Artist", "Track (From \"foo\")"]
     assert f("Artist - Track (Subtítulos en español) ||Lyrics||") == ["Artist", "Track"]
     assert f("Artist - Track (french subtitles)") == ["Artist", "Track"]
+    assert f("Artist - Track (something ARCHIVES)") == ["Artist", "Track"]

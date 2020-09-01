@@ -32,6 +32,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"(ALBUM TRACK\s*)?(album track\s*)",  # (ALBUM TRACK)
     r"(COVER ART\s*)?(Cover Art\s*)",  # (Cover Art)
     r"\((.*?)subt(.*?)\)",  # (subtitles espanol) https://regex101.com/r/8kVFrm/1
+    r"\((.*?)archives\)",  # (something ARCHIVES)
     r"\(\s*of+icial\s*\)",  # (official)
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
     r"\(\s*([a-z]*\s)?\s*[0-9]{4}([a-z])?\s*([a-z]*\s?)?\)",  # (Techno 1990)
@@ -106,13 +107,6 @@ def split_artist_track(title):
     # Strip full title
     title = title.strip()
 
-    # https://regex101.com/r/FkABDG/1
-    quoted_track = re.match(r"(.+?)\"([^\"]*)\"", title)
-    if quoted_track:
-        artist = quoted_track.group(1)
-        track = quoted_track.group(2)
-        return strip([artist, track])
-
     separator = find_separator(title)
     if separator:
         i = separator['index']
@@ -127,6 +121,13 @@ def split_artist_track(title):
         if second_artist:
             artist = ' '.join([artist, second_artist])
 
+        return strip([artist, track])
+
+    # https://regex101.com/r/FkABDG/1
+    quoted_track = re.match(r"(.+?)\"([^\"]*)\"", title)
+    if quoted_track:
+        artist = quoted_track.group(1)
+        track = quoted_track.group(2)
         return strip([artist, track])
 
 
