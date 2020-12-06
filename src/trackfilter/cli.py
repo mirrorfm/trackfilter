@@ -49,6 +49,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"\|.*$",  # | something
     r"\(+\s*\)+",  # Leftovers after e.g. (official video)
     r"\(.*[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}.*\)",  # (*01/01/1999*)
+    r"#[a-z0-9]*"  # #HashTag
 ]
 
 
@@ -81,9 +82,9 @@ def clean_artist(artist):
     for s in to_remove:
         artist = artist.replace(' %s ' % s, ' ')
 
-    # Remove "PREMIERE: "
-    # https://regex101.com/r/nG16TF/1
-    artist = re.sub(r"(PREMIERE\s*:)?", "", artist.strip(), flags=re.IGNORECASE)
+    # Remove "PREMIERE: " or "INCOMING: "
+    # https://regex101.com/r/nG16TF/3
+    artist = re.sub(r"((PREMIERE|INCOMING)\s*:)?", "", artist.strip(), flags=re.IGNORECASE)
 
     # Remove vinyl track number
     # https://regex101.com/r/gHh2TB/4
