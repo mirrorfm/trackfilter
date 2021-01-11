@@ -37,6 +37,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"\(\s*of+icial\s*\)",  # (official)
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
     r"\(\s*([a-z]*\s)?\s*[0-9]{4}([a-z])?\s*([a-z]*\s?)?\)",  # (Techno 1990)
+    r"\([A-Z]{1,10}[0-9]{1,4}\)",  # (CAT001) or (A1) https://regex101.com/r/JiLQST/2
     r"\(\s*([0-9]{4}\s*)?unreleased\s*([0-9]{4}\s*)?\)",  # (unreleased) https://regex101.com/r/Z5zD8l/1
     r"\(\s*(HD|HQ|ᴴᴰ)\s*\)$",  # HD (HQ)
     r"(HD|HQ|ᴴᴰ)\s*$",  # HD (HQ)

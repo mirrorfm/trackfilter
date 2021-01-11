@@ -13,6 +13,7 @@ def test_split_artist_track():
     assert f("Art-ist - Track") == ["Art-ist", "Track"]
     assert f("Artist - Tr-ack") == ["Artist", "Tr-ack"]
     assert f("Artist - Track - Something") == ["Artist", "Track - Something"]
+    assert f("Artist-Track") == ["Artist", "Track"]
     assert f("Artist & Track") is None
     assert f(None) is None
     assert f("") is None
@@ -41,12 +42,12 @@ def test_split_artist_track():
     assert f("01. Artist - Track") == ["Artist", "Track"]
     assert f("99. Artist - Track") == ["Artist", "Track"]
     assert f("100. Artist - Track") == ["100. Artist", "Track"]
+    assert f("Artist - Track (A1)") == ["Artist", "Track"]
     assert f("PREMIERE: Artist - Track") == ["Artist", "Track"]
     assert f("Premiere: Artist - Track") == ["Artist", "Track"]
     assert f("Premiere : Artist - Track") == ["Artist", "Track"]
     assert f("Artist - Track (1999)") == ["Artist", "Track"]
     assert f("Artist - Track (Techno 1990)") == ["Artist", "Track"]
-    assert f("Artist - Track (Remix123)") == ["Artist", "Track (Remix123)"]
     assert f("Artist - Track (Techno 123)") == ["Artist", "Track (Techno 123)"]
     assert f("Artist - Track ( unreleased 1990 )") == ["Artist", "Track"]
     assert f("  Premiere : Artist - Track") == ["Artist", "Track"]
@@ -64,3 +65,6 @@ def test_split_artist_track():
     assert f("Artist - Track - foo archives") == ["Artist", "Track"]
     assert f("Artist - Track #HashTag") == ["Artist", "Track"]
     assert f("INCOMING : Artist - Track #HashTag") == ["Artist", "Track"]
+    assert f("Artist - Track (CAT001)") == ["Artist", "Track"]
+    assert f("Artist - Track (Artist remix) (CAT001)") == ["Artist", "Track (Artist remix)"]
+    assert f("Artist - Track (Artist remix)(CAT001)") == ["Artist", "Track (Artist remix)"]
