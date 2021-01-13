@@ -78,11 +78,6 @@ def clean_artist(artist):
     # Remove [whatever] before artist
     artist = re.sub(r"\[[^\]]+\]", "", artist)
 
-    # Remove indicator for multiple artists
-    to_remove = ['&', 'feat', 'feat.', 'vs', 'vs.', 'featuring']
-    for s in to_remove:
-        artist = artist.replace(' %s ' % s, ' ')
-
     # Remove "PREMIERE: " or "INCOMING: "
     # https://regex101.com/r/nG16TF/3
     artist = re.sub(r"((PREMIERE|INCOMING)\s*:)?", "", artist.strip(), flags=re.IGNORECASE)
@@ -91,7 +86,13 @@ def clean_artist(artist):
     # https://regex101.com/r/gHh2TB/4
     artist = re.sub(r"^((([a-zA-Z]{1,2})|([0-9]{1,2}))[1-9]?\. )?", "", artist.strip())
 
-    return artist
+    # Remove indicator for multiple artists
+    artist_separators = ['&', 'feat', 'feat.', 'vs', 'vs.', 'featuring']
+    for s in artist_separators:
+        artists = artist.split(' %s ' % s)
+        if len(artists) > 1:
+            return artists
+    return [artist]
 
 
 def artist_in_track(track):
@@ -116,22 +117,21 @@ def split_artist_track(title):
         length = separator['length']
         artist = title[0:i]
         track = filter_with_filter_rules(title[i+length:])
-        artist = clean_artist(artist)
+        artists = clean_artist(artist)
 
         # Handle case where another artist is part of the track
         # Artist1 - Track feat. Artist2
         track, second_artist = artist_in_track(track)
         if second_artist:
-            artist = ' '.join([artist, second_artist])
-
-        return strip([artist, track])
+            artists.append(second_artist)
+        return [strip(artists), strip([track])[0]]
 
     # https://regex101.com/r/FkABDG/1
     quoted_track = re.match(r"(.+?)\"([^\"]*)\"", title)
     if quoted_track:
         artist = quoted_track.group(1)
         track = quoted_track.group(2)
-        return strip([artist, track])
+        return [strip([artist]), strip([track])[0]]
 
 
 def strip(words):
