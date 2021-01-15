@@ -72,3 +72,8 @@ class Test(unittest.TestCase):
         self.assertEqual(f("Artist - Track (CAT001)"), [["Artist"], "Track"])
         self.assertEqual(f("Artist - Track (Artist remix) (CAT001)"), [["Artist"], "Track (Artist remix)"])
         self.assertEqual(f("Artist - Track (Artist remix)(CAT001)"), [["Artist"], "Track (Artist remix)"])
+        self.assertEqual(f("Artist - Track (Artist remix)(1998)"), [["Artist"], "Track (Artist remix)"])
+        self.assertEqual(f("Artist - Track (Artist remix) (1998)"), [["Artist"], "Track (Artist remix)"])
+        self.assertEqual(f("Artist - Track (Artist remix) 1998"), [["Artist"], "Track (Artist remix)"])
+        self.assertEqual(f("Artist - Track (Artist remix) (Something else)"), [["Artist"], "Track (Artist remix)"])
+        self.assertEqual(f("Artist - Track (Artist remix)(Something else) (again)"), [["Artist"], "Track (Artist remix)"])

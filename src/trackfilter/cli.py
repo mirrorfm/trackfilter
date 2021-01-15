@@ -48,6 +48,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"full\s*album",  # Full Album
     r"\(?live.*?\)?$",  # live
     r"\|.*$",  # | something
+    r"\s*[0-9]{4}\s*",  # Track (Artist remix) 1999 https://regex101.com/r/vFHEvY/2
     r"\(+\s*\)+",  # Leftovers after e.g. (official video)
     r"\(.*[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}.*\)",  # (*01/01/1999*)
     r"#[a-z0-9]*"  # #HashTag
@@ -141,4 +142,13 @@ def strip(words):
 def filter_with_filter_rules(text):
     for regex in YOUTUBE_TRACK_FILTER_RULES:
         text = re.sub(regex, "", text, flags=re.IGNORECASE)
+
+    while True:
+        # Track (Artist remix) (Remove this) (And this)  https://regex101.com/r/0meJko/2
+        groups = re.findall(r"\(.*\)\s*(\((.*)\))", text)
+        if len(groups) > 0:
+            text = text.replace(groups[0][0], "")
+        else:
+            break
+
     return text
