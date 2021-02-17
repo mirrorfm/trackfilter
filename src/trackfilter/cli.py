@@ -47,7 +47,7 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"\sclip",  # clip
     r"full\s*album",  # Full Album
     r"\(?live.*?\)?$",  # live
-    r"\|.*$",  # | something
+    r"([|]|[\\\/]{2,}).*$",  # | something
     r"\s*[0-9]{4}\s*",  # Track (Artist remix) 1999 https://regex101.com/r/vFHEvY/2
     r"\(+\s*\)+",  # Leftovers after e.g. (official video)
     r"\(.*[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}.*\)",  # (*01/01/1999*)
