@@ -4,6 +4,13 @@ Changelog
 unreleased
 ----------
 
+* Classic python library structure instead of cookiecutter + tox
+* Use nose2
+* Python 3.8+ support
+
+1.0.0 (2020-03-07)
+------------------
+
 * Remove "(unreleased)"
 * Add separator ►
 * Remove what follows [something]

@@ -77,14 +77,3 @@ For merging, you should:
        `run the tests <https://travis-ci.org/mirrorfm/trackfilter/pull_requests>`_ for each change you add in the pull request.
 
        It will be slower though ...
-
-Tips
-----
-
-To run a subset of tests::
-
-    tox -e envname -- pytest -k test_myfeature
-
-To run all the test environments in *parallel* (you need to ``pip install detox``)::
-
-    detox

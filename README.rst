@@ -9,23 +9,12 @@ Overview
 
     * - docs
       - |docs|
-    * - tests
-      - | |travis|
-        | |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
 .. |docs| image:: https://readthedocs.org/projects/trackfilter/badge/?style=flat
     :target: https://readthedocs.org/projects/trackfilter
     :alt: Documentation Status
-
-.. |travis| image:: https://api.travis-ci.org/mirrorfm/trackfilter.svg?branch=master
-    :alt: Travis-CI Build Status
-    :target: https://travis-ci.org/mirrorfm/trackfilter
-
-.. |codecov| image:: https://codecov.io/github/mirrorfm/trackfilter/coverage.svg?branch=master
-    :alt: Coverage Status
-    :target: https://codecov.io/github/mirrorfm/trackfilter
 
 .. |version| image:: https://img.shields.io/pypi/v/trackfilter.svg
     :alt: PyPI Package latest release
@@ -78,21 +67,4 @@ Development
 
 To run the all tests run::
 
-    tox
-
-Note, to combine the coverage data from all the tox environments run:
-
-.. list-table::
-    :widths: 10 90
-    :stub-columns: 1
-
-    - - Windows
-      - ::
-
-            set PYTEST_ADDOPTS=--cov-append
-            tox
-
-    - - Other
-      - ::
-
-            PYTEST_ADDOPTS=--cov-append tox
+    nose2
