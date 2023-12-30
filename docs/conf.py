@@ -20,7 +20,7 @@ project = 'TrackFilter'
 year = '2023'
 author = 'Stephane Bruckert'
 copyright = '{0}, {1}'.format(year, author)
-version = release = '1.1.0'
+version = release = '1.2.0'
 
 pygments_style = 'trac'
 templates_path = ['.']

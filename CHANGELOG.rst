@@ -4,6 +4,9 @@ Changelog
 unreleased
 ----------
 
+1.2.0 (2023-12-30)
+------------------
+
 * Remove "(vinyl)"
 * Remove "(something download)"
 * Remove "- something download"
