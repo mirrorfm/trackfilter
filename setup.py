@@ -20,7 +20,7 @@ setup(
         'Issue Tracker': 'https://github.com/mirrorfm/trackfilter/issues',
     },
     zip_safe=False,
-    python_requires='>=3.8',
+    python_requires='~=3.8',
     test_suite='nose.collector',
     tests_require=['nose2'],
     entry_points={
