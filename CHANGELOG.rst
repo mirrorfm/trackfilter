@@ -4,6 +4,12 @@ Changelog
 unreleased
 ----------
 
+* Remove "(vinyl)"
+* Remove "(something download)"
+* Remove "- something download"
+* Remove "(extended)"
+* Remove "\|label\|"
+
 1.1.0 (2023-12-30)
 ------------------
 

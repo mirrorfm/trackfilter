@@ -33,8 +33,12 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"(COVER ART\s*)?(Cover Art\s*)",  # (Cover Art)
     r"\((.*?)subt(.*?)\)",  # (subtitles espanol) https://regex101.com/r/8kVFrm/1
     r"\((.*?)archives\)",  # (something ARCHIVES)
+    r"\((.*?)download\)",  # (something download)
     r"\-? (.*?) archives",  # - something ARCHIVES)
+    r"\-? (.*?) download",  # - something download)
     r"\(\s*of+icial\s*\)",  # (official)
+    r"\(\s*extended\s*\)",  # (extended)
+    r"\(\s*vinyl\s*\)",  # (vinyl)
     r"\(\s*[0-9]{4}\s*\)",  # (1999)
     r"\(\s*([a-z]*\s)?\s*[0-9]{4}([a-z])?\s*([a-z]*\s?)?\)",  # (Techno 1990)
     r"\([A-Z]{1,10}[0-9]{1,4}\)",  # (CAT001) or (A1) https://regex101.com/r/JiLQST/2
