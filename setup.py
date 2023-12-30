@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
       name='trackfilter',
-      version='1.0.0',
+      version='1.1.0',
       description='Remove YouTube-related garbage from song titles.',
       url='https://github.com/mirrorfm/trackfilter',
       author='Stephane Bruckert',

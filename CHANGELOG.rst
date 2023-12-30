@@ -4,11 +4,15 @@ Changelog
 unreleased
 ----------
 
+1.1.0 (2023-12-30)
+------------------
+
+* Remove (1999) before Artist
 * Classic python library structure instead of cookiecutter + tox
 * Use nose2
 * Python 3.8+ support
 
-1.0.0 (2020-03-07)
+1.0.0 (2020-12-06)
 ------------------
 
 * Remove "(unreleased)"

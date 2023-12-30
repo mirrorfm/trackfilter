@@ -32,9 +32,9 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/trackfilter
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/mirrorfm/trackfilter/v1.0.0.svg
+.. |commits-since| image:: https://img.shields.io/github/commits-since/mirrorfm/trackfilter/v1.1.0.svg
     :alt: Commits since latest release
-    :target: https://github.com/mirrorfm/trackfilter/compare/v1.0.0...master
+    :target: https://github.com/mirrorfm/trackfilter/compare/v1.1.0...master
 
 
 

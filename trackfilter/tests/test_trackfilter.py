@@ -50,6 +50,7 @@ class Test(unittest.TestCase):
         self.assertEqual(f("PREMIERE: Artist - Track"), [["Artist"], "Track"])
         self.assertEqual(f("Premiere: Artist - Track"), [["Artist"], "Track"])
         self.assertEqual(f("Premiere : Artist - Track"), [["Artist"], "Track"])
+        self.assertEqual(f("(1999) Artist - Track"), [["Artist"], "Track"])
         self.assertEqual(f("Artist - Track (1999)"), [["Artist"], "Track"])
         self.assertEqual(f("Artist - Track (Techno 1990)"), [["Artist"], "Track"])
         self.assertEqual(f("Artist - Track (Techno 123)"), [["Artist"], "Track (Techno 123)"])

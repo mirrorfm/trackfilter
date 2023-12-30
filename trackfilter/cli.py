@@ -79,6 +79,9 @@ def clean_artist(artist):
     # Remove [whatever] before artist
     artist = re.sub(r"\[[^\]]+\]", "", artist)
 
+    # Remove (1999) before Artist
+    artist = re.sub(r"\(\s*[0-9]{4}\s*\)", "", artist)
+
     # Remove "PREMIERE: " or "INCOMING: "
     # https://regex101.com/r/nG16TF/3
     artist = re.sub(r"((PREMIERE|INCOMING)\s*:)?", "", artist.strip(), flags=re.IGNORECASE)
