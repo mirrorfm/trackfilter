@@ -20,7 +20,7 @@ Why does this file exist, and why not put this in __main__?
 import re
 
 YOUTUBE_TRACK_FILTER_RULES = [
-    r"^\s+|\s+$"
+    r"^\s+|\s+$",
     r"\*+\s?\S+\s?\*+$",
     r"\[[^\]]+\].*",  # [whatever] something else
     r"\([^)]*version\)$",
@@ -50,9 +50,9 @@ YOUTUBE_TRACK_FILTER_RULES = [
     r"vid[\u00E9e]o\s?clip",  # video clip
     r"\sclip",  # clip
     r"full\s*album",  # Full Album
-    r"\(?live.*?\)?$",  # live
+    r"(?!^)\(?\blive\b.*?\)?$",  # live — word boundary prevents mid-word match (alive, oliver)
     r"([|]|[\\\/]{2,}).*$",  # | something
-    r"\s*[0-9]{4}\s*",  # Track (Artist remix) 1999 https://regex101.com/r/vFHEvY/2
+    r"\s+[0-9]{4}\s*",  # Track (Artist remix) 1999 — require leading space so bare "1984" isn't stripped
     r"\(+\s*\)+",  # Leftovers after e.g. (official video)
     r"\(.*[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}.*\)",  # (*01/01/1999*)
     r"#[a-z0-9]*"  # #HashTag

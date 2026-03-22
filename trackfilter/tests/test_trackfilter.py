@@ -88,7 +88,35 @@ class Test(unittest.TestCase):
             "Artist - Track (Artist remix) (1998)": [["Artist"], "Track (Artist remix)"],
             "Artist - Track (Artist remix) 1998": [["Artist"], "Track (Artist remix)"],
             "Artist - Track (Artist remix) (Something else)": [["Artist"], "Track (Artist remix)"],
-            "Artist - Track (Artist remix)(Something else) (again)": [["Artist"], "Track (Artist remix)"]
+            "Artist - Track (Artist remix)(Something else) (again)": [["Artist"], "Track (Artist remix)"],
+            # "live" inside words must not destroy the track
+            "Daft Punk - Alive": [["Daft Punk"], "Alive"],
+            "Pearl Jam - Alive": [["Pearl Jam"], "Alive"],
+            "Bee Gees - Stayin' Alive": [["Bee Gees"], "Stayin' Alive"],
+            "Elvis Costello - Oliver's Army": [["Elvis Costello"], "Oliver's Army"],
+            "Artist - Deliver": [["Artist"], "Deliver"],
+            "Artist - Olive Garden": [["Artist"], "Olive Garden"],
+            # "live" metadata still stripped
+            "Artist - Track (Live)": [["Artist"], "Track"],
+            "Artist - Track (live at Fabric)": [["Artist"], "Track"],
+            "Artist - Track (Live Version)": [["Artist"], "Track"],
+            # "Live at..." as the actual track title is preserved
+            "Artist - Live at Berghain": [["Artist"], "Live at Berghain"],
+            "Artist - Live in Paris": [["Artist"], "Live in Paris"],
+            # 4-digit track titles preserved
+            "David Bowie - 1984": [["David Bowie"], "1984"],
+            "Prince - 1999": [["Prince"], "1999"],
+            # trailing years still stripped
+            "Artist - Track 2019": [["Artist"], "Track"],
+            # real-world YouTube titles
+            "Aphex Twin - Windowlicker (Official Video)": [["Aphex Twin"], "Windowlicker"],
+            "Boards of Canada - Roygbiv": [["Boards of Canada"], "Roygbiv"],
+            "Kraftwerk - The Robots (Official Music Video)": [["Kraftwerk"], "The Robots"],
+            "ARTIST - TRACK (OFFICIAL VIDEO)": [["ARTIST"], "TRACK"],
+            # unicode artists
+            "Björk - Army of Me": [["Björk"], "Army of Me"],
+            "Sigur Rós - Hoppípolla": [["Sigur Rós"], "Hoppípolla"],
+            "Röyksopp - Eple": [["Röyksopp"], "Eple"],
         }
 
         for fr, to in from_to.items():
