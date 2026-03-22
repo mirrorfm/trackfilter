@@ -5,7 +5,7 @@ with open("README.rst", "r") as f:
 
 setup(
     name='trackfilter',
-    version='1.2.0',
+    version='1.2.1',
     description='Remove YouTube-related garbage from song titles.',
     long_description=long_description,
     url='https://github.com/mirrorfm/trackfilter',
